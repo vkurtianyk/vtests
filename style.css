@@ -1,0 +1,97 @@
+:root {
+  --bg: #fbf7f0;
+  --card: #ffffff;
+  --ink: #2b2a33;
+  --muted: #6d6a75;
+  --accent: #e07a2f;
+  --cool: #4b5fa8;
+  --good: #2f8a57;
+  --bad: #c0453a;
+  --line: #e6dfd3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1b22;
+    --card: #26252e;
+    --ink: #ece9f1;
+    --muted: #a19dab;
+    --line: #3a3843;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font: 17px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+header {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 16px 0;
+}
+h1 { font-size: 1.15rem; margin: 0 0 8px; }
+nav { display: flex; gap: 4px; overflow-x: auto; }
+nav button {
+  border: 0; background: none; color: var(--muted);
+  padding: 8px 6px; font: inherit; font-size: .9rem;
+  border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap;
+}
+nav button.active { color: var(--ink); border-bottom-color: var(--accent); }
+main { max-width: 720px; margin: 0 auto; padding: 16px; }
+.hint { color: var(--muted); font-size: .95rem; margin: 0 0 12px; }
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px 16px; margin-bottom: 12px;
+}
+.stage-head { display: flex; gap: 12px; align-items: baseline; cursor: pointer; }
+.num {
+  flex: none; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 700;
+  display: grid; place-items: center;
+}
+.stage-head h2 { font-size: 1.1rem; margin: 0; }
+.stage-head small { color: var(--muted); display: block; }
+.hook { color: var(--cool); font-style: italic; }
+.reveal { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.say { font-weight: 600; }
+.say::before { content: "Кажу: "; color: var(--accent); }
+.do::before { content: "Роблю: "; color: var(--accent); font-weight: 600; }
+button.main {
+  background: var(--accent); color: #fff; border: 0; border-radius: 10px;
+  padding: 12px 18px; font: inherit; font-weight: 600; cursor: pointer;
+}
+button.ghost {
+  background: none; color: var(--ink); border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px 18px; font: inherit; cursor: pointer;
+}
+.row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.flash { min-height: 220px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.flash .q { font-size: 1.3rem; font-weight: 600; }
+.flash .a { margin-top: 14px; font-size: 1.1rem; }
+.progress { height: 6px; background: var(--line); border-radius: 3px; margin-bottom: 12px; }
+.progress div { height: 100%; background: var(--good); border-radius: 3px; transition: width .3s; }
+.pick { display: grid; gap: 8px; }
+.pick button {
+  text-align: left; background: var(--card); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+  font: inherit; cursor: pointer;
+}
+.pick button.ok { border-color: var(--good); background: color-mix(in srgb, var(--good) 15%, var(--card)); }
+.pick button.no { border-color: var(--bad); animation: shake .3s; }
+.placed { list-style: none; padding: 0; margin: 0 0 12px; }
+.placed li { padding: 8px 12px; border-left: 4px solid var(--good); margin-bottom: 6px; background: var(--card); border-radius: 6px; }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.types-img { width: 100%; max-height: 360px; object-fit: cover; border-radius: 10px; }
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.demo svg { width: 100%; height: auto; display: block; border-radius: 10px; }
+.demo input { width: 100%; }
+.sheet h2 { font-size: 1.05rem; margin: 16px 0 6px; color: var(--accent); }
+.sheet ol, .sheet ul { margin: 0; padding-left: 22px; }
+.sample { float: right; width: 120px; margin: 0 0 8px 12px; border-radius: 8px; }
+@media print {
+  header, .no-print { display: none; }
+  body { background: #fff; color: #000; font-size: 13px; }
+  .card { border: 0; padding: 0; }
+}
